@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:front": "pnpm run -C packages/frontend dev"
+  },
+  "devDependencies": {
+    "@types/node": "^18.17.5",
+    "eslint": "^8.46.0",
+    "prettier": "^3.0.0"
   },
   "keywords": [],
   "author": "",
