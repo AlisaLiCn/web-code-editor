@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import * as monaco from 'monaco-editor'
+import { initMonacoEnv } from './utils'
 
 const props = withDefaults(
     defineProps<{
@@ -24,6 +25,8 @@ const emit = defineEmits<{
 const containerRef = ref<HTMLDivElement>()
 const editor = shallowRef<monaco.editor.IStandaloneCodeEditor>()
 
+initMonacoEnv()
+
 onMounted(async () => {
   await nextTick()
 
@@ -38,8 +41,7 @@ onMounted(async () => {
     value: props.value,
     language: props.lang,
     fontSize: 13,
-    theme: 'dark',
-    // theme: replTheme.value === 'light' ? theme.light : theme.dark,
+    theme: 'vs-dark',
     readOnly: props.readonly,
     automaticLayout: true,
     scrollBeyondLastLine: false,

@@ -10,9 +10,13 @@ import monacoEditor from '@/components/monaco-editor/index.vue'
   </header>
 
   <main class="main-wrapper">
-    <monaco-editor></monaco-editor>
-    <div class="preview-wrapper">preview</div>
+    <monaco-editor lang="html"></monaco-editor>
+    <monaco-editor lang="css"></monaco-editor>
+    <monaco-editor lang="javascript"></monaco-editor>
   </main>
+  <footer>
+    <div class="preview-wrapper">preview</div>
+  </footer>
 </template>
 
 <style scoped>
@@ -22,17 +26,9 @@ header {
 .main-wrapper {
   display: flex;
   justify-content: flex-start;
-  height: 100vh;
+  height: 600px;
 }
 .preview-wrapper {
-  width: 50%;
 }
 
-@media (min-width: 1024px) {
-  /* header { */
-    /* display: flex; */
-    /* place-items: center; */
-    /* padding-right: calc(var(--section-gap) / 2); */
-  /* } */
-}
 </style>
