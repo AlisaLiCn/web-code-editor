@@ -1,5 +1,20 @@
+<template>
+  <header class="header-wrapper">
+    <div class="tool-item" @click="execute">运行</div>
+    <div class="tool-item">设置</div>
+  </header>
+  
+  <main class="main-wrapper">
+    <editor-container lang="html" @change="onHtmlChange"></editor-container>
+    <editor-container lang="css" @change="onCssChange"></editor-container>
+    <editor-container lang="javascript" @change="onChange"></editor-container>
+  </main>
+
+  <div class="preview-wrapper">preview</div>
+</template>
+
 <script setup lang="ts">
-import monacoEditor from '@/components/monaco-editor/index.vue'
+import EditorContainer from '@/components/editor-container/index.vue'
 import { debounce } from '@/utils/index'
 
 const htmlCode = ref('')
@@ -23,21 +38,6 @@ const execute = () => {
 }
 
 </script>
-
-<template>
-  <header class="header-wrapper">
-    <div class="tool-item" @click="execute">运行</div>
-    <div class="tool-item">设置</div>
-  </header>
-
-  <main class="main-wrapper">
-    <monaco-editor lang="html" @change="onHtmlChange"></monaco-editor>
-    <monaco-editor lang="css" @change="onCssChange"></monaco-editor>
-    <monaco-editor lang="javascript" @change="onChange"></monaco-editor>
-  </main>
-
-  <div class="preview-wrapper">preview</div>
-</template>
 
 <style scoped>
 .header-wrapper {
