@@ -10,16 +10,24 @@
     <editor-container lang="javascript" @change="onChange"></editor-container>
   </main>
 
-  <div class="preview-wrapper">preview</div>
+  <div class="preview-wrapper">
+    <preview ref="previewRef" :files="{
+      html: htmlCode,
+      css: cssCode,
+      javascript: jsCode
+    }"></preview>
+  </div>
 </template>
 
 <script setup lang="ts">
 import EditorContainer from '@/components/editor-container/index.vue'
+import Preview from '@/components/preview/index.vue'
 import { debounce } from '@/utils/index'
 
 const htmlCode = ref('')
 const cssCode = ref('')
 const jsCode = ref('')
+const previewRef = ref(null)
 
 const onHtmlChange = debounce((code: string) => {
    htmlCode.value = code
@@ -34,7 +42,7 @@ const onChange = debounce((code: string) => {
 }, 500)
 
 const execute = () => {
-  
+  previewRef.value.execute()
 }
 
 </script>
@@ -43,19 +51,25 @@ const execute = () => {
 .header-wrapper {
   display: flex;
   justify-content: flex-end;
-  padding-right: 20px;
+  padding: 10px 20px;
   line-height: 1.5;
+  background-color: #18212d;
 }
 .tool-item {
-  padding: 5px 10px;
+  margin-right: 10px;
+  padding: 5px 15px;
   font-size: 14px;
-  color: #666;
+  color: #fff;
+  background-color: rgb(255 255 255 / 8%);
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .main-wrapper {
   display: flex;
   justify-content: flex-start;
-  height: 600px;
+  height: 700px;
+  overflow-y: hidden;
 }
 .preview-wrapper {
 
