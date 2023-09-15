@@ -1,7 +1,7 @@
 <template>
   <div class="editor-container">
     <div class="editor-lang">{{  props.lang }}</div>
-    <monaco-editor lang="html" @change="onChange"></monaco-editor>
+    <monaco-editor :lang="props.lang" @change="onChange"></monaco-editor>
   </div>
 </template>
   

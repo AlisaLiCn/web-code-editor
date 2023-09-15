@@ -48,7 +48,6 @@
 
             let { script: scripts } = ev.data.args
             if (typeof scripts === 'string') scripts = [scripts]
-
             for (const script of scripts) {
               const scriptEl = document.createElement('script')
               scriptEl.setAttribute('type', 'module')
@@ -57,7 +56,6 @@
               const done = new Promise((resolve) => {
                 window.__next__ = resolve
               })
-              console.log('inner html', script + `\nwindow.__next__()`)
               scriptEl.innerHTML = script + `\nwindow.__next__()`
               document.head.appendChild(scriptEl)
               scriptEl.onerror = (err) => send_error(err.message, err.stack)

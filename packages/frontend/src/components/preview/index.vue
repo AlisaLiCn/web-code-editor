@@ -128,6 +128,11 @@ const execute = async () => {
   for(let lang in props.files){
     if(lang === 'html') {
       codeToEval.push(`document.body.innerHTML = '${props.files[lang]}'`)
+    } else if(lang === 'css'){
+    // TODO replace srcdoc
+    //   codeToEval.push(`<style>${props.files[lang]}</style>`)
+    } else if(lang === 'javascript') {
+      codeToEval.push(props.files[lang])
     }
   }
   await proxy.eval(codeToEval)
