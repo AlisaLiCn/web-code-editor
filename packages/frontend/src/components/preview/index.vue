@@ -126,11 +126,10 @@ const execute = async () => {
 //       }, 1)`
 
   for(let lang in props.files){
-    if(lang === 'html') {
-      codeToEval.push(`document.body.innerHTML = '${props.files[lang]}'`)
+    if(lang === 'html') {    
+      codeToEval.push(`document.body.innerHTML = '${props.files[lang].replaceAll('\n', '')}'`)
     } else if(lang === 'css'){
-    // TODO replace srcdoc
-    //   codeToEval.push(`<style>${props.files[lang]}</style>`)
+      codeToEval.push(`const el = document.createElement('style')\nel.innerHTML='${props.files[lang].replaceAll('\n', '')}'\ndocument.head.appendChild(el)`)
     } else if(lang === 'javascript') {
       codeToEval.push(props.files[lang])
     }
