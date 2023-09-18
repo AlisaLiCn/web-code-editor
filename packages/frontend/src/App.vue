@@ -64,7 +64,9 @@ const execute = () => {
   cursor: pointer;
   border-radius: 5px;
 }
-
+.tool-item:hover {
+  background-color: rgb(255 255 255 / 12%);
+}
 .main-wrapper {
   display: flex;
   justify-content: flex-start;

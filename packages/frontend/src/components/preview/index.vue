@@ -120,18 +120,16 @@ function createSandbox() {
 const execute = async () => {
   const codeToEval = []
 
-//   `setTimeout(()=> {
-//         document.querySelectorAll('style[css]').forEach(el => el.remove())
-//         document.head.insertAdjacentHTML('beforeend', window.__css__.map(s => \`<style css>\${s}</style>\`).join('\\n'))
-//       }, 1)`
-
+  codeToEval.push(`document.querySelectorAll('style[css]').forEach(el => el.remove())`)
+  
   for(let lang in props.files){
-    if(lang === 'html') {    
-      codeToEval.push(`document.body.innerHTML = '${props.files[lang].replaceAll('\n', '')}'`)
+    const codeString = props.files[lang]
+    if(lang === 'html') {
+      codeToEval.push(`document.body.innerHTML = '${codeString.replaceAll('\n', '')}'`)
     } else if(lang === 'css'){
-      codeToEval.push(`const el = document.createElement('style')\nel.innerHTML='${props.files[lang].replaceAll('\n', '')}'\ndocument.head.appendChild(el)`)
+      codeToEval.push(`document.head.insertAdjacentHTML("beforeend", '<style css>${codeString.replaceAll('\n', '')}</style>')`)
     } else if(lang === 'javascript') {
-      codeToEval.push(props.files[lang])
+      codeToEval.push(codeString)
     }
   }
   await proxy.eval(codeToEval)
