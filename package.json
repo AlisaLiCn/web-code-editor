@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:front": "pnpm run -C packages/frontend dev"
+    "dev": "pnpm -r --filter=./packages/frontend run dev"
   },
   "devDependencies": {
     "@types/node": "^18.17.5",
