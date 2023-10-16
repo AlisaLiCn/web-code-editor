@@ -22,7 +22,7 @@ const runtimeError = ref()
 
 let sandbox: HTMLIFrameElement
 let proxy: PreviewProxy
-let stopUpdateWatcher: WatchStopHandle | undefined
+// let stopUpdateWatcher: WatchStopHandle | undefined
 
 // create sandbox on mount
 onMounted(createSandbox)
@@ -92,12 +92,7 @@ function createSandbox() {
           runtimeError.value = log.args[0]
         }
       } else if (log.level === 'warn') {
-        if (log.args[0].toString().includes('[Vue warn]')) {
-          runtimeWarning.value = log.args
-            .join('')
-            .replace(/\[Vue warn\]:/, '')
-            .trim()
-        }
+        
       }
     },
     on_console_group: (action: any) => {
@@ -117,7 +112,7 @@ function createSandbox() {
   })
 }
 
-const execute = async () => {
+const execute = async (): Promise<void> => {
   const codeToEval = []
 
   codeToEval.push(`document.querySelectorAll('style[css]').forEach(el => el.remove())`)
