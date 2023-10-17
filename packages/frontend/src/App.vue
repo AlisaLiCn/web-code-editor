@@ -27,7 +27,7 @@ import { debounce } from '@/utils/index'
 const htmlCode = ref('')
 const cssCode = ref('')
 const jsCode = ref('')
-const previewRef = ref(null)
+const previewRef = ref<InstanceType<typeof Preview> | null>(null)
 
 const onHtmlChange = debounce((code: string) => {
    htmlCode.value = code
@@ -42,7 +42,7 @@ const onChange = debounce((code: string) => {
 }, 500)
 
 const execute = () => {
-  previewRef.value.execute()
+  previewRef.value?.execute()
 }
 
 </script>
