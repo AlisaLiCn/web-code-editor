@@ -88,11 +88,9 @@ function createSandbox() {
       if (log.level === 'error') {
         if (log.args[0] instanceof Error) {
           runtimeError.value = log.args[0].message
-        } else {
+        }else {
           runtimeError.value = log.args[0]
         }
-      } else if (log.level === 'warn') {
-        
       }
     },
     on_console_group: (action: any) => {
